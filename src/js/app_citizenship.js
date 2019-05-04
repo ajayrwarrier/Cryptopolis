@@ -99,7 +99,7 @@ App = {
     const gender = $( "#gender option:selected" ).text();
 
     console.log(App.account);
-    await App.citizenship.addCitizen(App.account,String(fname),String(lname),String(fathname),parseInt(age),String(gender),String(address));
+    await App.citizenship.addCitizen(username,String(fname),String(lname),String(fathname),parseInt(age),String(gender),String(address));
     window.location.reload()
   },
 

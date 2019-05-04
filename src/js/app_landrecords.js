@@ -54,7 +54,23 @@ App = {
     App.contracts.LandRecords.setProvider(App.web3Provider)
 
     // Hydrate the smart contract with values from the blockchain
-    App.landrecords = await App.contracts.LandRecords.deployed()
+    App.landrecords = await App.contracts.LandRecords.deployed();
+
+    const citizenship = await $.getJSON('Citizenship.json')
+    App.contracts.Citizenship = TruffleContract(citizenship)
+    App.contracts.Citizenship.setProvider(App.web3Provider)
+
+    // Hydrate the smart contract with values from the blockchain
+    App.citizenship = await App.contracts.Citizenship.deployed()
+    var citizenCount = await App.citizenship.citizenCount()
+    for (var i = 1; i <= citizenCount; i++) {
+      const Citizen = await App.citizenship.citizens(i)
+      var username = Citizen[1]
+      console.log(username)
+      $('#cid').append(new Option(username,username, true, true));
+      
+    }
+    
   },
 
   render: async () => {
@@ -68,7 +84,9 @@ App = {
 
     // Render Account
     $('#account').html(App.account)
-
+    
+    
+    
     
     // Update loading state
     App.setLoading(false)
@@ -90,29 +108,30 @@ App = {
 
   createRecord: async () => {
     App.setLoading(true)
-    const cid = $('#Cid').val()
+    
+    const cid = $('#cid').val()
     const owner = $('#Owner').val()
     const addr = $('#Address').val()
     const sqf = $('#sqfeet').val()
 
-    
-    await App.landrecords.createRecord(parseInt(cid),String(owner),String(addr),parseInt(sqf))
+    console.log(cid)
+    await App.landrecords.createRecord(cid,String(owner),String(addr),parseInt(sqf))
     window.location.reload()
   },
 
   view: async () => {
     App.setLoading(true)
     const cid = $('#Cid').val()
-    var intcid = parseInt(cid)
     var recordCount = await App.landrecords.recordCount()
     recordCount = recordCount.toNumber()
+
     
     $('#test3').html("Number of Records:"+recordCount+"<br><br>")
 
     for (var i = 1; i <= recordCount; i++) {
       const record = await App.landrecords.records(i)
       var rid = record[0].toNumber()
-      var cid1 = record[1].toNumber()
+      var cid1 = record[1]
       var owner = record[2]
       var addr = record[3]
       var sq = record[4].toNumber()
@@ -140,7 +159,7 @@ App = {
       for (var i = 1; i <= recordCount; i++) {
         const record = await App.landrecords.records(i)
         var rid = record[0].toNumber()
-        var cid1 = record[1].toNumber()
+        var cid1 = record[1]
         var owner = record[2]
         var addr = record[3]
         var sq = record[4].toNumber()

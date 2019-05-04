@@ -5,7 +5,7 @@ contract LandRecords{
 
     struct Record {
     uint Rid;
-    uint Cid;
+    address Cid;
     string Owner;
     string Address;
     uint Sqfeet;
@@ -15,12 +15,12 @@ contract LandRecords{
   mapping(uint => Record) public records;
 
   constructor() public {
-        createRecord(0,"Jane Doe","ABC lane,XYZ PO,PQR",100);
+        createRecord(0x345cA3e014Aaf5dcA488057592ee47305D9B3e10,"Jane Doe","ABC lane,XYZ PO,PQR",100);
       }
 
-  function createRecord(uint _cid,string memory _owner,string memory _address,uint _sqfeet) public {
+  function createRecord(address cid,string memory _owner,string memory _address,uint _sqfeet) public {
     recordCount ++;
-    records[recordCount] = Record(recordCount,_cid,_owner,_address,_sqfeet,0);
+    records[recordCount] = Record(recordCount,cid,_owner,_address,_sqfeet,recordCount*100);
     
   }
 }
