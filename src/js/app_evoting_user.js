@@ -56,6 +56,13 @@ App = {
   
       // Hydrate the smart contract with values from the blockchain
       App.todoList = await App.contracts.TodoList.deployed()
+
+      const todoList1 = await $.getJSON('Citizenship.json')
+      App.contracts.TodoList1 = TruffleContract(todoList1)
+      App.contracts.TodoList1.setProvider(App.web3Provider)
+  
+      // Hydrate the smart contract with values from the blockchain
+      App.todoList1 = await App.contracts.TodoList1.deployed()
       console.log(App.todoList)
     },
     render: async() =>{
@@ -75,6 +82,7 @@ App = {
         });
 
     electionInstance= App.todoList;
+    citizenInstance = App.todoList1;
     candidatesCount= await electionInstance.candidatesCount();
     console.log(candidatesCount);
     var candidatesResults = $("#candidatesResults");
@@ -98,10 +106,12 @@ App = {
         candidatesSelect.append(candidateOption);
     }  
     hasVoted= await electionInstance.voters(App.account)
+    isCitizen = await citizenInstance.auth(App.account)
     // Do not allow a user to vote
-    if(hasVoted) {
+    
+      if(hasVoted || !isCitizen)
       $('form').hide();
-    }
+    
     loader.hide();
     content.show();
   

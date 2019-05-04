@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
-
-contract Election {
+import "./Citizenship.sol";
+contract Election is Citizenship {
     // Model a Candidate
     struct Candidate {
         uint id;
@@ -27,6 +27,7 @@ contract Election {
 
     function vote (uint _candidateId) public {
         // require that they haven't voted before
+
         require(!voters[msg.sender]);
 
         // require a valid candidate

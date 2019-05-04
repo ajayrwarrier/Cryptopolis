@@ -65,8 +65,9 @@ font-family: 'Dosis',sans-serif;
 .auth_button{
 margin: 2%;
 padding:5%;
+background: brown;
 color: aliceblue;
-background: #000;
+
 }
 
 

@@ -4,3 +4,6 @@ $('#voting').click(function(){
  $('#land').click(function(){
     window.location.href='../lr_admin.html';
  })
+ $('#citizen').click(function(){
+   window.location.href='../citizen_admin.html';
+})
