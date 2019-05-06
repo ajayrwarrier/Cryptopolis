@@ -1,3 +1,9 @@
 $('#vote').click(function(){
     window.location.href='../evoting_user.html';
  }) 
+ $('#records').click(function(){
+    window.location.href='../view_lr.html';
+ }) 
+ $('#citizen').click(function(){
+    window.location.href='../citizen_view.html';
+ }) 
