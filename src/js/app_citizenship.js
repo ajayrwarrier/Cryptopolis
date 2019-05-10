@@ -102,7 +102,7 @@ App = {
     if(isAdmin)
     await App.citizenship.addCitizen(username,String(fname),String(lname),String(fathname),parseInt(age),String(gender),String(address));
     else
-    alert("Not Citizen")
+    alert("Not Admin")
     window.location.reload()
   },
 
