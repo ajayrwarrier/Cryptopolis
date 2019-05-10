@@ -15,7 +15,7 @@ contract LandRecords{
   mapping(uint => Record) public records;
 
   constructor() public {
-        createRecord(0x345cA3e014Aaf5dcA488057592ee47305D9B3e10,"Jane Doe","ABC lane,XYZ PO,PQR",100);
+        createRecord(msg.sender,"Jane Doe","ABC lane,XYZ PO,PQR",100);
       }
 
   function createRecord(address cid,string memory _owner,string memory _address,uint _sqfeet) public {
