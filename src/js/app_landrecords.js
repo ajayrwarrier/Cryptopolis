@@ -113,9 +113,12 @@ App = {
     const owner = $('#Owner').val()
     const addr = $('#Address').val()
     const sqf = $('#sqfeet').val()
-
+    isAdmin = await App.citizenship.admin(App.account)
     console.log(cid)
+    if(isAdmin)
     await App.landrecords.createRecord(cid,String(owner),String(addr),parseInt(sqf))
+    else
+    alert("Not Admin")
     window.location.reload()
   },
 

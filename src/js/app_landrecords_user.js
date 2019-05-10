@@ -125,12 +125,15 @@ App = {
       var sq = record[4].toNumber()
       var lid = record[5].toNumber()
       if(cid1 == App.account){
+        $('#test3').append("<div id="+"LID>");
       $('#test3').append("<h3> <strong>Record id:"+rid+"</strong><br></h3>")
       $('#test3').append("<h3> Citizen id:"+cid1+"<br></h3>")
       $('#test3').append("<h3> Owner name:"+owner+"<br></h3>")
       $('#test3').append("<h3> address:"+addr+"<br></h3>")
       $('#test3').append("<h3> Sq feet:"+sq+"<br></h3>")
       $('#test3').append("<h3> Land id:"+lid+"<br><br><br></h3>")
+      $('#test3').append("</div>")
+      $('#test3').append("<button onclick="+"App.generate()"+">Generate Land Record</button>")
        }
       }
      },
@@ -167,7 +170,20 @@ App = {
 
          }
       
-       }
+       },
+       generate: () => {
+        var pdf = new jsPDF()
+        pdf.text(35, 25, "LID ")
+        pdf.text(35, 25, "Record ID: "+rid)
+        pdf.text(35, 25, "First Name: "+fname)
+        pdf.text(35, 25, "Last Name: "+lname)
+        pdf.text(35, 25, "Father's Name: "+fathname)
+        pdf.text(35, 25, "Age: "+age)
+        pdf.text(35, 25, "Gender: "+gender)
+        pdf.text(35, 25, "Address: "+address)
+        pdf.save(EID.pdf)
+  
+      }
 
 
 }

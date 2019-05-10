@@ -14,9 +14,10 @@ contract Citizenship {
     }
     mapping(uint => Citizen) public citizens;
     mapping(address=>bool) public auth;
-    
+    mapping (address=>bool) public admin;
     constructor() public {
-        addCitizen(0x345cA3e014Aaf5dcA488057592ee47305D9B3e10,"Pikachu","Pika","R",20,"Male","Palet Town");
+        addCitizen(msg.sender,"Admin","admin","",20,"Male","Palet Town");
+        admin[msg.sender]= true;
     }
 
     function addCitizen (address _addr,string memory _fn,string memory _ln,string memory _father,uint _age,string memory _gender,string memory _ha) 

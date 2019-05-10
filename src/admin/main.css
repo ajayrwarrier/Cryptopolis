@@ -43,6 +43,12 @@ header {
     font-family: 'Dosis',sans-serif;
     font-size: 25%;
   }
+
+#citizen,#land,#voting{
+  background-color: brown;
+  color: white;
+  
+}
   
   @media (pointer: coarse) and (hover: none) {
     header {

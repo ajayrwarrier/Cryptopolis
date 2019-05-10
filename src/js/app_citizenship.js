@@ -97,9 +97,12 @@ App = {
     const age = $('#age').val()
     const address = $('#address').val()
     const gender = $( "#gender option:selected" ).text();
-
+    isAdmin = await App.citizenship.admin(App.account)
     console.log(App.account);
+    if(isAdmin)
     await App.citizenship.addCitizen(username,String(fname),String(lname),String(fathname),parseInt(age),String(gender),String(address));
+    else
+    alert("Not Citizen")
     window.location.reload()
   },
 
@@ -137,7 +140,6 @@ App = {
      search: async () => {
       App.setLoading(true)
       const ciid = $('#Cid').val()
-      var intcid = parseInt(ciid)
       var citzenCount = await App.citizenship.citizenCount()
       citzenCount = citzenCount.toNumber()
       
@@ -154,7 +156,7 @@ App = {
         var gender = Citizen[6]
         var address = Citizen[8]
         
-        if(intcid==cid){
+        if(ciid==username){
           $('#test3').append("<h3> <strong>Citizen id:"+cid+"</strong><br></h3>")
       $('#test3').append("<h3> User Name:"+username+"<br></h3>")
       $('#test3').append("<h3> First Name:"+fname+"<br></h3>")
