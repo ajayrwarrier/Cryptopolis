@@ -1,4 +1,3 @@
-
 App = {
   loading: false,
   contracts: {},
@@ -120,27 +119,25 @@ App = {
       $('#test3').append("<h3> Gender:"+gender+"<br></h3>")
       $('#test3').append("<h3> Address:"+address+"<br><br><br></h3>")
       $('#test3').append("</div>")
-      $('#test3').append("<button onclick="+"App.generate()"+">Generate PDF</button>")  
-      
+      $('#test3').append("<button id="+"generate"+">Generate PDF</button>")  
+      $('#generate').click(function(){
+        var pdf = new jsPDF()
+      pdf.text(35, 25, "EID ")
+      pdf.text(35, 45, "Username: "+username)
+      pdf.text(35, 65, "First Name: "+fname)
+      pdf.text(35, 85, "Last Name: "+lname)
+      pdf.text(35, 105, "Father's Name: "+fathname)
+      pdf.text(35, 125, "Age: "+age)
+      pdf.text(35, 145, "Gender: "+gender)
+      pdf.text(35, 165, "Address: "+address)
+      pdf.save(EID.pdf)
+     })
   
     }
 
     }
     
-     },
-    generate: () => {
-      var pdf = new jsPDF()
-      pdf.text(35, 25, "EID ")
-      pdf.text(35, 25, "Username: "+username)
-      pdf.text(35, 25, "First Name: "+fname)
-      pdf.text(35, 25, "Last Name: "+lname)
-      pdf.text(35, 25, "Father's Name: "+fathname)
-      pdf.text(35, 25, "Age: "+age)
-      pdf.text(35, 25, "Gender: "+gender)
-      pdf.text(35, 25, "Address: "+address)
-      pdf.save(EID.pdf)
-
-    }
+     }
   
 
      

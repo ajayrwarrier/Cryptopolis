@@ -133,8 +133,19 @@ App = {
       $('#test3').append("<h3> Sq feet:"+sq+"<br></h3>")
       $('#test3').append("<h3> Land id:"+lid+"<br><br><br></h3>")
       $('#test3').append("</div>")
-      $('#test3').append("<button onclick="+"App.generate()"+">Generate Land Record</button>")
-       }
+      $('#test3').append("<button id="+"generate"+">Generate Land Record</button>")  
+      $('#generate').click(function(){
+        var pdf = new jsPDF()
+        pdf.text(35, 25, "LID ")
+        pdf.text(35, 45, "Record ID: "+rid)
+        pdf.text(35, 65, "Citizen ID: "+cid1)
+        pdf.text(35, 85, "Owner: "+owner)
+        pdf.text(35, 105, "Address: "+addr)
+        pdf.text(35, 125, "Sq Feet: "+sq)
+        pdf.text(35, 145, "Land ID: "+lid)
+        pdf.save(LID.pdf)
+     })
+    }
       }
      },
 
@@ -170,20 +181,7 @@ App = {
 
          }
       
-       },
-       generate: () => {
-        var pdf = new jsPDF()
-        pdf.text(35, 25, "LID ")
-        pdf.text(35, 25, "Record ID: "+rid)
-        pdf.text(35, 25, "First Name: "+fname)
-        pdf.text(35, 25, "Last Name: "+lname)
-        pdf.text(35, 25, "Father's Name: "+fathname)
-        pdf.text(35, 25, "Age: "+age)
-        pdf.text(35, 25, "Gender: "+gender)
-        pdf.text(35, 25, "Address: "+address)
-        pdf.save(EID.pdf)
-  
-      }
+        }
 
 
 }
